@@ -3,4 +3,5 @@
 You need to create the DList functions
 
   void insertInOrder(T newDataValue)
-	void removeFromMeGivenNodes(DList<T>& otherList) 
+  
+  void removeFromMeGivenNodes(DList<T>& otherList) 
