@@ -213,4 +213,64 @@ public:
 
 	}
 
+
+	// -------------------------------------------------------
+	// Find common elements shared by this list and otherlist
+	// -------------------------------------------------------
+	void keepOnlyCommonElements(DList<T>& otherList)
+	{
+
+		//remove from me nodes not present in lst2
+		Node<int>* p1 = head;
+		while (p1 != nullptr)
+		{
+			int spy1 = p1->data, spyBefore = -1, spyAfter = -1;
+
+			Node<T>* before = p1->previous;
+			Node<T>* after = p1->next;
+			if (before != nullptr) spyBefore = before->data;
+			if (after != nullptr) spyAfter = after->data;
+
+			Node<int>* p2 = otherList.find(p1->data);
+			if (p2 == nullptr)
+			{
+				size--;
+
+				//Case1 - is p1 the head of the list?
+				if (head == p1)
+				{
+					head = after;
+					after->previous = nullptr;
+				}
+				//Case2 - is p1 the tail of the list?
+				else if (p1 == tail)
+				{
+					before->next = nullptr;
+					tail = before;
+				}
+				else
+					//Case3- p1 is an interior node
+				{
+					before->next = after;
+					after->previous = before;
+				}
+				delete p1;
+			}
+			p1 = after;
+		}
+
+	}
+
+	int addRecursivelyDataValues(Node<T>* first)
+	{
+		if (first == nullptr)
+			return 0;
+		else
+			return (first->data + addRecursivelyDataValues(first->next));
+	}
+
+	int addRecursivelyDataValues()
+	{
+		return addRecursivelyDataValues(head);
+	}
 };

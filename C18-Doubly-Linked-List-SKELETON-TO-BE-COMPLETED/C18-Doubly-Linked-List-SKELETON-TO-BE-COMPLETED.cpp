@@ -8,6 +8,8 @@ void experiment01();
 void experiment02();
 void experiment03();
 void experiment04();
+void experiment05();
+void experiment06();
 
 //--------------------------------------------------
 int main()
@@ -15,11 +17,52 @@ int main()
     //experiment01();   // Create sorted list using insertInOrder()
     //experiment02();   // Merge two sorted lists
     //experiment03();     // Remove from a list nodes included in another list
-    experiment04();     // Remove from me nodes included in another list
-
+    //experiment04();     // Remove from me nodes included in another list
+    //experiment05();     // Common elements shared by the two lists
+    experiment06();     // recursive sum of data items
 }
 
 //User-defined methods ------------------------------
+
+void experiment06()
+{
+    DList<int> lst1;
+    lst1.insertLast(10);
+    lst1.insertLast(20);
+    lst1.insertLast(30);
+    lst1.insertLast(40);
+    lst1.insertLast(50);
+    lst1.insertLast(60);
+    cout << " List-1\n" << lst1.toString() << endl;
+    int sum = lst1.addRecursivelyDataValues();
+    cout << "The sum of the lst data values is: " << sum << endl;
+}
+
+
+void experiment05()
+{
+    DList<int> lst1;
+    lst1.insertLast(44);
+    lst1.insertLast(55);
+    lst1.insertLast(22);
+    cout << " List-1\n" << lst1.toString() << endl;
+
+    DList<int> lst2;
+    lst2.insertLast(44);
+    lst2.insertLast(11);
+    lst2.insertLast(66);
+    lst2.insertLast(88);
+    lst2.insertLast(33);
+    lst2.insertLast(22);
+    cout << " List-2\n" << lst2.toString() << endl;
+
+    //modify lst1 to keep only elements that are common to lst1 and lst2
+    lst1.keepOnlyCommonElements(lst2);
+    cout << " Common Elements List-1\n" << lst1.toString() << endl;
+
+    cout << "\nAll done!\n";
+}
+
 void experiment04()
 {
     DList<int> lst1;
